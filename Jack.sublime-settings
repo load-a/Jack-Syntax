@@ -1,0 +1,4 @@
+// These settings override both User and Default settings for the Jack syntax
+{
+	"color_scheme": "Jack Color.sublime-color-scheme"
+}

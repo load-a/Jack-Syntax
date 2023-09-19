@@ -1,0 +1,53 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+Name: Jack Language Syntax
+scope: source.jack
+file_extensions: [jack]
+contexts:
+  main:
+    - match: ((class)|(constructor)|(method)|(function))
+      scope: reserved.components
+    - match: ((int)|(boolean)|(char)|(void))\s
+      scope: reserved.primitives
+    - match: ((var)|(static)|(field))
+      scope: reserved.declarations
+    - match: (return this;)
+      scope: reserved.statements.return_this
+    - match: ((let)|(do)|(if)|(else)|(while)|(return))
+      scope: reserved.statements
+    - match: ((true)|(false)|(null))
+      scope: reserved.constants
+    - match: (this)
+      scope: object.reference
+    - match: (([a-z]|\_)([A-Za-z]|\_|\d)* ?\()
+      scope: identifiers.function
+    - match: \)
+      scope: identifiers.function
+    - match: ([a-z]|\_)([A-Za-z]|\_|\d)*
+      scope: identifiers.user
+    - match: ([A-Z]|\_)([A-Za-z]|\_|\d)*
+      scope: identifiers.classes
+    #Comments
+    - match: '(//)[^*].+'
+      scope: comment.line
+    - match: '\/\*\*'
+      scope: comment.block
+      push:
+        - meta_scope: comment.block
+        - match: '\*\/'
+          pop: true
+    - match: '(//).+'
+      scope: comment.doc
+    - match: '\"'
+      scope: text.string
+      push:
+        - meta_scope: text.string
+        - match: '\"'
+          pop: true
+    - match: \'
+      scope: text.char
+      push:
+        - meta_scope: text.char
+        - match: \'
+          pop: true
